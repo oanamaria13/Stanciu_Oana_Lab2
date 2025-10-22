@@ -24,7 +24,8 @@ namespace Stanciu_Oana_Lab2.Pages.Books
         public async Task OnGetAsync()
         {
             Book = await _context.Book
-               .Include(b => b.Publisher)
+                .Include(b => b.Author)
+                .Include(b => b.Publisher)
                 .ToListAsync();
         }
     }

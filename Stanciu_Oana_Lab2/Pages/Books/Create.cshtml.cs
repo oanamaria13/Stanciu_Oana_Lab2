@@ -22,9 +22,8 @@ namespace Stanciu_Oana_Lab2.Pages.Books
 
         public IActionResult OnGet()
         {
-            AuthorsSL = new SelectList(_context.Author, "ID", "FullName");
-            ViewData["PublisherID"] = new SelectList(_context.Set<Publisher>(), "ID",
-"PublisherName");
+            ViewData["AuthorID"] = new SelectList(_context.Author, "ID", "FullName");
+            ViewData["PublisherID"] = new SelectList(_context.Publisher, "ID", "PublisherName");
             return Page();
         }
 
