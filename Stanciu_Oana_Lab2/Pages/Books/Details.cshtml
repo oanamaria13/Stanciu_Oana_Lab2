@@ -6,7 +6,15 @@
 }
 
 <h1>Details</h1>
-
+<h2>@Model.Book.Title</h2>
+<p><strong>Publisher:</strong> @Model.Book.Publisher.PublisherName</p>
+<p>
+    <strong>Categorii:</strong>
+    @foreach (var bc in Model.Book.BookCategories)
+    {
+        <span>@bc.Category.CategoryName </span>
+    }
+</p>
 <div>
     <h4>Book</h4>
     <hr />
