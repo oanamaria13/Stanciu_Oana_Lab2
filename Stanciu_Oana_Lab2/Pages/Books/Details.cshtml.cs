@@ -29,9 +29,9 @@ namespace Stanciu_Oana_Lab2.Pages.Books
             }
 
             var book = await _context.Book
-         .Include(b => b.Publisher)
+        .Include(b => b.Publisher)
         .Include(b => b.BookCategories)
-            .ThenInclude(bc => bc.Category)
+        .ThenInclude(bc => bc.Category)
         .FirstOrDefaultAsync(b => b.ID == id);
             if (book == null)
             {

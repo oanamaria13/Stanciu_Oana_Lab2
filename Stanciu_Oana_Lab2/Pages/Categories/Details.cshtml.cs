@@ -20,6 +20,7 @@ namespace Stanciu_Oana_Lab2.Pages.Categories
         }
 
         public Category Category { get; set; } = default!;
+        public IList<Book> Books { get; set; } = new List<Book>();
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,16 +29,18 @@ namespace Stanciu_Oana_Lab2.Pages.Categories
                 return NotFound();
             }
 
-            var category = await _context.Category.FirstOrDefaultAsync(m => m.ID == id);
-            if (category == null)
+            Category = await _context.Category
+                .Include(c => c.BookCategories)
+                    .ThenInclude(bc => bc.Book)
+                        .ThenInclude(b => b.Author) // optional, dacă vrei autor
+                .FirstOrDefaultAsync(c => c.ID == id);
+
+            if (Category == null)
             {
                 return NotFound();
             }
-            else
-            {
-                Category = category;
-            }
+            Books = Category.BookCategories.Select(bc => bc.Book).ToList();
             return Page();
         }
-    }
+    } 
 }

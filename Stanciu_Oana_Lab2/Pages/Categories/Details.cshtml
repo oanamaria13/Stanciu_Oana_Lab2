@@ -19,6 +19,24 @@
         </dd>
     </dl>
 </div>
+
+<div>
+    <h4>Cărți în această categorie</h4>
+    @if (Model.Books != null && Model.Books.Any())
+    {
+        <ul>
+            @foreach (var book in Model.Books)
+            {
+                <li>@book.Title - @book.Author?.FullName</li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p>Nu există cărți în această categorie.</p>
+    }
+</div>
+
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.Category.ID">Edit</a> |
     <a asp-page="./Index">Back to List</a>
